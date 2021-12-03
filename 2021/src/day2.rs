@@ -41,8 +41,35 @@ fn part_1(input: &Vec<Command>) {
         }
     }
 
+    println!("Part 1");
+
     println!("Position is {}", position);
     println!("Depth is {}", depth);
+
+    println!("Product is {}", position * depth);
+}
+
+fn part_2(input: &Vec<Command>) {
+    let mut position = 0;
+    let mut depth = 0;
+    let mut aim = 0;
+
+    for command in input {
+        match command {
+            Command::FORWARD(unit) => {
+                position += unit;
+                depth += aim * unit;
+            }
+            Command::UP(unit) => aim -= unit,
+            Command::DOWN(unit) => aim += unit,
+        }
+    }
+
+    println!("Part 2");
+
+    println!("Position is {}", position);
+    println!("Depth is {}", depth);
+    println!("Aim is {}", aim);
 
     println!("Product is {}", position * depth);
 }
@@ -50,5 +77,6 @@ fn part_1(input: &Vec<Command>) {
 pub fn main() {
     let input = load_input();
 
-    part_1(&input)
+    part_1(&input);
+    part_2(&input);
 }
