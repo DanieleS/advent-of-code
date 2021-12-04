@@ -1,10 +1,11 @@
 mod day1;
 mod day2;
+mod day3;
 
 use dialoguer::Select;
 
 fn main() -> std::io::Result<()> {
-    let days = [day1::main, day2::main];
+    let days = [day1::main, day2::main, day3::main];
 
     let options: Vec<String> = days
         .iter()
