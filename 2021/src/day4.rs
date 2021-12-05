@@ -79,6 +79,11 @@ struct Input {
     boards: Vec<Board>,
 }
 
+struct WinningBoard {
+    board: Board,
+    last_draw: i8,
+}
+
 fn parse_draws(input: &Vec<&str>) -> Vec<i8> {
     let draws_line = input[0];
 
@@ -158,8 +163,51 @@ fn part_1(mut input: Input) {
     }
 }
 
+fn part_2(input: Input) {
+    let mut boards = input.boards.clone();
+    let mut current_draw = 0;
+
+    let mut last_winning_board: Option<WinningBoard> = None;
+
+    while get_winning_board(&input.boards).is_none() && current_draw < input.draws.len() {
+        let last_draw = input.draws[current_draw];
+
+        for b in boards.iter_mut() {
+            b.check_cell(last_draw);
+        }
+
+        if let Some(winning_board) = get_winning_board(&boards) {
+            last_winning_board = Some(WinningBoard {
+                last_draw,
+                board: winning_board.clone(),
+            })
+        }
+
+        boards = boards
+            .iter()
+            .filter(|board| !board.is_winning())
+            .cloned()
+            .collect();
+
+        current_draw += 1
+    }
+
+    if let Some(winning_board) = last_winning_board {
+        println!(
+            "Last winning board unchecked cells sum: {}",
+            winning_board.board.sum_unckecked()
+        );
+        println!("Last number drawn: {}", winning_board.last_draw);
+        println!(
+            "Winning board score: {}",
+            winning_board.board.sum_unckecked() * winning_board.last_draw as i32
+        )
+    }
+}
+
 pub fn main() {
     let input = parse_input();
 
     part_1(input.clone());
+    part_2(input.clone());
 }
