@@ -6,6 +6,7 @@ mod day5;
 mod day6;
 mod day7;
 mod day8;
+mod day9;
 
 use dialoguer::Select;
 
@@ -19,6 +20,7 @@ fn main() -> std::io::Result<()> {
         day6::main,
         day7::main,
         day8::main,
+        day9::main,
     ];
 
     let options: Vec<String> = days
