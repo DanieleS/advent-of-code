@@ -4,17 +4,21 @@ use regex::Regex;
 
 enum InstructionCheckStatus {
     Valid,
-    Incomplete,
+    Incomplete(Vec<char>),
     Invalid(char),
 }
 
-fn load_input() -> Vec<String> {
+fn load_input() -> Vec<InstructionCheckStatus> {
     let input = read_to_string("input/day10.txt").expect("Failed to read input");
 
-    input.lines().map(|line| line.to_string()).collect()
+    input
+        .lines()
+        .map(|line| line.to_string())
+        .map(analyze_instruction)
+        .collect()
 }
 
-fn simplify_instruction(instruction: &str) -> InstructionCheckStatus {
+fn analyze_instruction(instruction: String) -> InstructionCheckStatus {
     let mut instruction = String::from(instruction);
 
     let bracket_regex = Regex::new(r"(\(\)|\[\]|\{\}|<>)").unwrap();
@@ -37,14 +41,24 @@ fn simplify_instruction(instruction: &str) -> InstructionCheckStatus {
         let first_invalid_character = closing_bracket_regex.find(&instruction).unwrap().as_str();
         InstructionCheckStatus::Invalid(first_invalid_character.chars().next().unwrap())
     } else {
-        InstructionCheckStatus::Incomplete
+        let missing: Vec<char> = instruction
+            .chars()
+            .map(|c| match c {
+                '(' => ')',
+                '[' => ']',
+                '{' => '}',
+                '<' => '>',
+                _ => panic!("Unexpected character: {}", c),
+            })
+            .rev()
+            .collect();
+        InstructionCheckStatus::Incomplete(missing)
     }
 }
 
-fn part_1(input: &Vec<String>) {
-    let invalid_instructions: Vec<char> = input
+fn part_1(input: &Vec<InstructionCheckStatus>) {
+    let invalid_instructions: Vec<&char> = input
         .iter()
-        .map(|line| simplify_instruction(line))
         .filter_map(|status| match status {
             InstructionCheckStatus::Invalid(c) => Some(c),
             _ => None,
@@ -65,8 +79,43 @@ fn part_1(input: &Vec<String>) {
     println!("Syntax error points: {}", syntax_points);
 }
 
+fn part_2(input: &Vec<InstructionCheckStatus>) {
+    let missing_chars: Vec<&Vec<char>> = input
+        .iter()
+        .filter_map(|status| match status {
+            InstructionCheckStatus::Incomplete(missing) => Some(missing),
+            _ => None,
+        })
+        .collect();
+
+    let mut missing_chars_points: Vec<u64> = missing_chars
+        .iter()
+        .map(|missing| {
+            missing.iter().fold(0, |acc, c| {
+                acc * 5
+                    + match c {
+                        ')' => 1,
+                        ']' => 2,
+                        '}' => 3,
+                        '>' => 4,
+                        _ => 0,
+                    }
+            })
+        })
+        .collect();
+
+    missing_chars_points.sort();
+
+    println!("Missing chars points: {:?}", missing_chars_points);
+    println!(
+        "Middle chars points: {:?}",
+        missing_chars_points[missing_chars_points.len() / 2]
+    );
+}
+
 pub fn main() {
     let input = load_input();
 
     part_1(&input);
+    part_2(&input);
 }
