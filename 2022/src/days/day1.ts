@@ -1,9 +1,7 @@
 import { ExecutionResult } from "../types/executionResult";
 import { loadInputFile } from "../utils";
 
-async function solvePuzzle1(): Promise<string> {
-  const input = await loadInputFile(1);
-
+function solvePuzzle1(input: string[]): number {
   let maxCalories = 0;
   let currentElfCalories = 0;
 
@@ -17,12 +15,10 @@ async function solvePuzzle1(): Promise<string> {
     }
   }
 
-  return String(maxCalories);
+  return maxCalories;
 }
 
-async function solvePuzzle2(): Promise<string> {
-  const input = await loadInputFile(1);
-
+function solvePuzzle2(input: string[]): number {
   const elves: number[] = [0];
   for (const snack of input) {
     if (!snack) {
@@ -34,12 +30,13 @@ async function solvePuzzle2(): Promise<string> {
 
   elves.sort((a, b) => b - a);
 
-  return String(elves[0] + elves[1] + elves[2]);
+  return elves[0] + elves[1] + elves[2];
 }
 
 export async function day1(): Promise<ExecutionResult> {
-  const puzzle1 = await solvePuzzle1();
-  const puzzle2 = await solvePuzzle2();
+  const input = await loadInputFile(1);
+  const puzzle1 = solvePuzzle1(input);
+  const puzzle2 = solvePuzzle2(input);
 
   return {
     day: 1,
