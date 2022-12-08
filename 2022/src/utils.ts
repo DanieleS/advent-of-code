@@ -22,3 +22,20 @@ export async function loadInputFile(day: number): Promise<string[]> {
 
   return file.split("\n");
 }
+
+export function memoized<I extends object, O>(
+  fn: (input: I) => O
+): (input: I) => O {
+  const results = new WeakMap<I, O>();
+  return (input) => {
+    const memoedResult = results.get(input);
+    if (memoedResult) {
+      return memoedResult;
+    }
+
+    const result = fn(input);
+    results.set(input, result);
+
+    return result;
+  };
+}
