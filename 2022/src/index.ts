@@ -1,4 +1,5 @@
 import { day1 } from "./days/day1";
+import { day10 } from "./days/day10";
 import { day2 } from "./days/day2";
 import { day3 } from "./days/day3";
 import { day4 } from "./days/day4";
@@ -18,6 +19,7 @@ import { printResults } from "./utils";
 // const result: ExecutionResult = await day6();
 // const result: ExecutionResult = await day7();
 // const result: ExecutionResult = await day8();
-const result: ExecutionResult = await day9();
+// const result: ExecutionResult = await day9();
+const result: ExecutionResult = await day10();
 
 printResults(result);
