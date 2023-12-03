@@ -8,7 +8,7 @@ export function printResults(results: ExecutionResult) {
   console.log(`Puzzle 1:`);
   console.log(results.puzzle1);
 
-  if (results.puzzle2) {
+  if (typeof results.puzzle2 === "number") {
     console.log();
     console.log(`Puzzle 2:`);
     console.log(results.puzzle2);
