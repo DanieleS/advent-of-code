@@ -39,3 +39,11 @@ export function memoized<I extends object, O>(
     return result;
   };
 }
+
+export function sumAll(arr: number[]): number {
+  return arr.reduce((acc, n) => acc + n, 0);
+}
+
+export function multAll(arr: number[]): number {
+  return arr.reduce((acc, n) => acc * n, 1);
+}
