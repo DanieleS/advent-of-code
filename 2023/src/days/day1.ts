@@ -1,5 +1,5 @@
 import { ExecutionResult } from "../types/executionResult";
-import { loadInputFile } from "../utils";
+import { loadInputFile, sumAll } from "../utils";
 
 function solvePuzzle1(input: string[]): number {
   const firstDigitRegex = /^[^\d]*(\d)/;
@@ -11,7 +11,7 @@ function solvePuzzle1(input: string[]): number {
     return parseInt(firstDigit + lastDigit);
   };
 
-  return input.map(parseRow).reduce((acc, v) => acc + v, 0);
+  return sumAll(input.map(parseRow));
 }
 
 function toNumber(number: string) {
@@ -50,7 +50,7 @@ function solvePuzzle2(input: string[]): number {
     return parseInt(toNumber(firstDigit) + toNumber(lastDigit));
   };
 
-  return input.map(parseRow).reduce((acc, v) => acc + v, 0);
+  return sumAll(input.map(parseRow));
 }
 
 export async function day1(): Promise<ExecutionResult> {
