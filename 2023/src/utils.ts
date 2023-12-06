@@ -47,3 +47,7 @@ export function sumAll(arr: number[]): number {
 export function multAll(arr: number[]): number {
   return arr.reduce((acc, n) => acc * n, 1);
 }
+
+export function inRange(number: number, min: number, max: number) {
+  return number >= min && number < max;
+}
