@@ -40,6 +40,16 @@ export function memoized<I extends object, O>(
   };
 }
 
+export const debugFn =
+  <T extends unknown[], R>(fn: (...args: T) => R): ((...args: T) => R) =>
+  (...args) => {
+    const result = fn(...args);
+
+    console.log(...args, result);
+
+    return result;
+  };
+
 export function sumAll(arr: number[]): number {
   return arr.reduce((acc, n) => acc + n, 0);
 }
