@@ -8,7 +8,10 @@ export function printResults(results: ExecutionResult) {
   console.log(`Puzzle 1:`);
   console.log(results.puzzle1);
 
-  if (typeof results.puzzle2 === "number") {
+  if (
+    typeof results.puzzle2 === "number" ||
+    typeof results.puzzle2 === "string"
+  ) {
     console.log();
     console.log(`Puzzle 2:`);
     console.log(results.puzzle2);
@@ -60,4 +63,26 @@ export function multAll(arr: number[]): number {
 
 export function inRange(number: number, min: number, max: number) {
   return number >= min && number < max;
+}
+
+export function gcd(a: bigint, b: bigint): bigint {
+  if (b === 0n) {
+    return a;
+  }
+  return gcd(b, a % b);
+}
+
+export function lcm(a: bigint, b: bigint): bigint {
+  return (a * b) / gcd(a, b);
+}
+
+export function lcmMultiple(numbers: bigint[]): bigint {
+  if (numbers.length === 0) {
+    return 0n;
+  }
+  let result = numbers[0];
+  for (let i = 1; i < numbers.length; i++) {
+    result = lcm(result, numbers[i]);
+  }
+  return result;
 }
