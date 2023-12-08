@@ -205,13 +205,13 @@ function solvePuzzle2(input: string[]): number {
   return sumAll(sorted.map((b, i) => b.bid * (i + 1)));
 }
 
-export async function day6(): Promise<ExecutionResult> {
-  const input = await loadInputFile(6);
+export async function day7(): Promise<ExecutionResult> {
+  const input = await loadInputFile(7);
   const puzzle1 = solvePuzzle1(input);
   const puzzle2 = solvePuzzle2(input);
 
   return {
-    day: 6,
+    day: 7,
     puzzle1,
     puzzle2,
   };
