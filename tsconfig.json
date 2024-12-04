@@ -1,11 +1,12 @@
 {
-  "extends": "../tsconfig.json",
   "compilerOptions": {
     "lib": ["ESNext"],
     "module": "Node16",
-    "target": "esnext",
+    "target": "ESNext",
     "moduleResolution": "node16",
+    "strict": true,
     "verbatimModuleSyntax": true,
-    "strict": true
-  }
+    "outDir": "${configDir}dist"
+  },
+  "include": ["${configDir}src/**/*.ts"]
 }
