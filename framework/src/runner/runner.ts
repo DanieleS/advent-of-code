@@ -3,7 +3,7 @@ import type { ExecutionResult } from "../types.js";
 import { loadInputFile, printResults } from "./utils.js";
 
 const {
-  values: { file, input, day },
+  values: { file, input, day, test: isTest },
 } = parseArgs({
   options: {
     day: {
@@ -14,6 +14,9 @@ const {
     },
     input: {
       type: "string",
+    },
+    test: {
+      type: "boolean",
     },
   },
 });
@@ -33,4 +36,4 @@ const inputFile = await loadInputFile(input);
 
 const result = (await fn.default(inputFile)) as ExecutionResult;
 
-printResults(parseInt(day, 10), result);
+printResults(parseInt(day, 10), result, isTest);

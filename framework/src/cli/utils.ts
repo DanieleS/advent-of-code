@@ -28,6 +28,10 @@ export async function getDayFilePath(day: number) {
   return resolve(process.cwd(), "src/days", `day${day}.ts`);
 }
 
-export async function getDayInputPath(day: number) {
-  return resolve(process.cwd(), "src/input", `day${day}.txt`);
+export async function getDayInputPath(day: number, isTest: boolean) {
+  return resolve(
+    process.cwd(),
+    "src/input",
+    `day${day}.${isTest ? "test." : ""}txt`
+  );
 }

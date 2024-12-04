@@ -2,9 +2,15 @@ import { readFile } from "node:fs/promises";
 import chalk from "chalk";
 import type { ExecutionResult } from "../types.js";
 
-export function printResults(day: number, results: ExecutionResult) {
+export function printResults(
+  day: number,
+  results: ExecutionResult,
+  isTest?: boolean
+) {
   console.log(
-    chalk.greenBright("Results of ") + chalk.red.bold.underline(`Day ${day}`)
+    chalk.greenBright("Results of ") +
+      chalk.red.bold.underline(`Day ${day}`) +
+      (isTest ? chalk.yellow(" (Test)") : "")
   );
   console.log();
   console.log(chalk.bgYellow.bold(" Puzzle 1 "), results.puzzle1);
