@@ -14,7 +14,7 @@ export function printResults(day: number, results: ExecutionResult) {
     chalk.bgYellow.bold(" Puzzle 2 "),
     typeof results.puzzle2 === "number" || typeof results.puzzle2 === "string"
       ? results.puzzle2
-      : "-"
+      : chalk.gray("---")
   );
 }
 

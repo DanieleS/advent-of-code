@@ -6,5 +6,8 @@
   },
   "dependencies": {
     "@aoc/framework": "workspace:^"
+  },
+  "devDependencies": {
+    "@types/node": "^22.10.1"
   }
 }

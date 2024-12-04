@@ -23,6 +23,10 @@ importers:
       '@aoc/framework':
         specifier: workspace:^
         version: link:../framework
+    devDependencies:
+      '@types/node':
+        specifier: ^22.10.1
+        version: 22.10.1
 
   .: {}
 
