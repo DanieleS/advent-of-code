@@ -1,5 +1,4 @@
-import { ExecutionResult } from "../types/executionResult";
-import { loadInputFile, sumAll } from "../utils";
+import type { PuzzleSolver } from "@aoc/framework";
 
 const mulRegex = /mul\((\d+),(\d+)\)/g;
 const doRegex = /do\(\)/g;
@@ -67,14 +66,14 @@ function solvePuzzle2(input: string[]): number {
   return sum;
 }
 
-export async function day3(): Promise<ExecutionResult> {
-  const input = await loadInputFile(3);
+const solver: PuzzleSolver = async (input) => {
   const puzzle1 = solvePuzzle1(input);
   const puzzle2 = solvePuzzle2(input);
 
   return {
-    day: 3,
     puzzle1,
     puzzle2,
   };
-}
+};
+
+export default solver;

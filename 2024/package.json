@@ -1,8 +1,10 @@
 {
-  "name": "advent-of-code-2022",
-  "module": "src/index.ts",
+  "name": "advent-of-code-2024",
   "type": "module",
-  "devDependencies": {
-    "bun-types": "^1.1.38"
+  "scripts": {
+    "start": "aoc"
+  },
+  "dependencies": {
+    "@aoc/framework": "workspace:^"
   }
 }
