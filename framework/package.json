@@ -7,7 +7,14 @@
     "aoc": "./dist/cli/cli.js"
   },
   "exports": {
-    ".": "./dist/index.js"
+    ".": {
+      "import": "./dist/index.js",
+      "types": "./dist/index.d.ts"
+    },
+    "./math": {
+      "import": "./dist/utils/math.js",
+      "types": "./dist/utils/math.d.ts"
+    }
   },
   "scripts": {
     "build": "tsc -b"
