@@ -12,8 +12,8 @@
       "types": "./dist/index.d.ts"
     },
     "./math": {
-      "import": "./dist/utils/math.js",
-      "types": "./dist/utils/math.d.ts"
+      "import": "./dist/utils/math/index.js",
+      "types": "./dist/utils/math/index.d.ts"
     }
   },
   "scripts": {

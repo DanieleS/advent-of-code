@@ -1,5 +1,5 @@
 import type { PuzzleSolver } from "@aoc/framework";
-import { sum } from "@aoc/framework/math";
+import { Algebra } from "@aoc/framework/math";
 
 type EquationQuestion = {
   result: number;
@@ -91,7 +91,7 @@ function solvePuzzle1(input: string[]): number {
     .map(solveEquation(["+", "*"]))
     .filter((equation) => equation !== null)
     .map((equation) => equation.result)
-    .reduce(sum, 0);
+    .reduce(Algebra.sum, 0);
 }
 
 function solvePuzzle2(input: string[]): number {
@@ -100,7 +100,7 @@ function solvePuzzle2(input: string[]): number {
     .map(solveEquation(["+", "*", "||"]))
     .filter((equation) => equation !== null)
     .map((equation) => equation.result)
-    .reduce(sum, 0);
+    .reduce(Algebra.sum, 0);
 }
 
 const solver: PuzzleSolver = async (input) => {

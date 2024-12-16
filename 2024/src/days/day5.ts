@@ -1,5 +1,5 @@
 import type { PuzzleSolver } from "@aoc/framework";
-import { sum } from "@aoc/framework/math";
+import { Algebra } from "@aoc/framework/math";
 
 type PageRules = Map<number, number[]>;
 
@@ -73,7 +73,7 @@ function solvePuzzle1(input: string[]): number {
   return updates
     .filter((update) => checkUpdate(update, rules))
     .map(getMiddlePage)
-    .reduce(sum, 0);
+    .reduce(Algebra.sum, 0);
 }
 
 function solvePuzzle2(input: string[]): number {
@@ -83,7 +83,7 @@ function solvePuzzle2(input: string[]): number {
     .filter((update) => !checkUpdate(update, rules))
     .map((update) => fixUpdate(update, rules))
     .map(getMiddlePage)
-    .reduce(sum, 0);
+    .reduce(Algebra.sum, 0);
 }
 
 const solver: PuzzleSolver = async (input) => {

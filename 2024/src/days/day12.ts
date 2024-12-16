@@ -1,5 +1,5 @@
 import type { PuzzleSolver } from "@aoc/framework";
-import { sum } from "@aoc/framework/math";
+import { Algebra } from "@aoc/framework/math";
 
 type Grid = string[];
 type Group = Set<string>;
@@ -206,7 +206,7 @@ function solvePuzzle1(input: string[]): number {
       }))
     )
     .map(({ area, perimeter }) => area * perimeter)
-    .reduce(sum, 0);
+    .reduce(Algebra.sum);
 }
 
 function solvePuzzle2(input: string[]): number {
@@ -220,7 +220,7 @@ function solvePuzzle2(input: string[]): number {
       }))
     )
     .map(({ area, sides }) => area * sides)
-    .reduce(sum, 0);
+    .reduce(Algebra.sum);
 }
 
 const solver: PuzzleSolver = async (input) => {

@@ -1,5 +1,5 @@
 import type { PuzzleSolver } from "@aoc/framework";
-import { sum } from "@aoc/framework/math";
+import { Algebra } from "@aoc/framework/math";
 
 type Point = [x: number, y: number];
 
@@ -48,10 +48,10 @@ function solvePuzzle1(input: string[]): number {
 
     return nextPositions
       .map((p) => solveNextStep(p, foundNines))
-      .reduce(sum, 0);
+      .reduce(Algebra.sum);
   };
 
-  return positions.map((p) => solveNextStep(p)).reduce(sum, 0);
+  return positions.map((p) => solveNextStep(p)).reduce(Algebra.sum);
 }
 
 function solvePuzzle2(input: string[]): number {
@@ -76,10 +76,10 @@ function solvePuzzle2(input: string[]): number {
         input[position[1]]?.[position[0]] === String(Number(currentHeight) + 1)
     );
 
-    return nextPositions.map(solveNextStep).reduce(sum, 0);
+    return nextPositions.map(solveNextStep).reduce(Algebra.sum);
   };
 
-  return positions.map(solveNextStep).reduce(sum, 0);
+  return positions.map(solveNextStep).reduce(Algebra.sum);
 }
 
 const solver: PuzzleSolver = async (input) => {

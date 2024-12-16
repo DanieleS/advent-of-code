@@ -1,5 +1,5 @@
 import type { PuzzleSolver } from "@aoc/framework";
-import { sum } from "@aoc/framework/math";
+import { Algebra } from "@aoc/framework/math";
 
 type Button = {
   x: number;
@@ -81,7 +81,7 @@ function solvePuzzle1(input: string[]): number {
 
       return a * 3 + b;
     })
-    .reduce(sum);
+    .reduce(Algebra.sum);
 }
 
 function solvePuzzle2(input: string[]): number {
@@ -100,7 +100,7 @@ function solvePuzzle2(input: string[]): number {
 
       return a * 3 + b;
     })
-    .reduce(sum);
+    .reduce(Algebra.sum);
 }
 
 const solve: PuzzleSolver = async (input) => {
